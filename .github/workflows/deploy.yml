@@ -1,0 +1,81 @@
+name: CI/CD — Build & Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  # ─────────────────────────────────────────
+  # JOB 1: Build & Validate
+  # ─────────────────────────────────────────
+  build:
+    name: Build & Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify project files exist
+        run: |
+          echo "Checking required files..."
+          test -f index.html && echo "  index.html   - FOUND" || (echo "  index.html   - MISSING" && exit 1)
+          test -f style.css  && echo "  style.css    - FOUND" || (echo "  style.css    - MISSING" && exit 1)
+          test -f script.js  && echo "  script.js    - FOUND" || (echo "  script.js    - MISSING" && exit 1)
+          echo "All required files verified."
+
+      - name: Validate HTML structure
+        run: |
+          echo "Validating HTML..."
+          grep -q "<!DOCTYPE html>" index.html && echo "  DOCTYPE declaration - OK"
+          grep -q "<html"           index.html && echo "  <html> tag          - OK"
+          grep -q "<head"           index.html && echo "  <head> section      - OK"
+          grep -q "<body"           index.html && echo "  <body> section      - OK"
+          grep -q "style.css"       index.html && echo "  CSS link            - OK"
+          grep -q "script.js"       index.html && echo "  JS link             - OK"
+          echo "HTML validation passed."
+
+      - name: Check file sizes
+        run: |
+          echo "File size report:"
+          wc -l index.html style.css script.js
+          du -sh index.html style.css script.js
+
+      - name: Upload artifact for deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .   # Deploy from root directory
+
+  # ─────────────────────────────────────────
+  # JOB 2: Deploy to GitHub Pages
+  # ─────────────────────────────────────────
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Print live URL
+        run: |
+          echo "Deployment complete!"
+          echo "Live site: ${{ steps.deployment.outputs.page_url }}"
