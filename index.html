@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloud CI/CD Deployment — Osama Ayesh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- ════════════════════════════ HEADER ════════════════════════════ -->
+    <header id="hero">
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-content">
+        <span class="badge">Cloud Computing Assignment</span>
+        <h1 id="hero-title">Cloud CI/CD Deployment</h1>
+        <p id="hero-subtitle">
+          Automated Deployment using GitHub Actions &amp; GitHub Pages
+        </p>
+        <div class="hero-tags">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">GitHub Pages</span>
+          <span class="tag">DevOps</span>
+          <span class="tag">Automation</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ════════════════════════════ MAIN ═════════════════════════════ -->
+    <main id="main-content">
+      <div class="container">
+
+        <!-- ── User Info ─────────────────────────────────────────────── -->
+        <section id="user-info" class="card card--accent" aria-label="Student Information">
+          <div class="card-inner user-card">
+            <div class="user-avatar" aria-hidden="true">OA</div>
+            <div class="user-details">
+              <h2 class="user-name">Osama Ayesh</h2>
+              <p class="user-course">
+                <span class="label">Course</span>
+                <span class="value">Cloud Computing</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Section 1 : What is CI/CD? ────────────────────────────── -->
+        <section id="what-is-cicd" class="card" aria-labelledby="cicd-heading">
+          <div class="card-inner">
+            <div class="section-icon" aria-hidden="true">⚡</div>
+            <div class="section-body">
+              <h2 id="cicd-heading" class="section-title">What is CI/CD?</h2>
+              <p class="section-text">
+                <strong>Continuous Integration (CI)</strong> is the practice of
+                automatically integrating code changes from multiple contributors
+                into a shared repository several times a day. Every push triggers
+                automated tests and builds, catching bugs early before they reach
+                production.
+              </p>
+              <p class="section-text">
+                <strong>Continuous Deployment (CD)</strong> extends CI by
+                automatically releasing every validated change directly to a
+                live environment — eliminating manual deployment steps. Together,
+                CI/CD empowers teams to ship reliable software faster, with
+                confidence and consistency, turning hours of manual work into a
+                fully automated pipeline measured in seconds.
+              </p>
+              <div class="info-grid">
+                <div class="info-item">
+                  <span class="info-icon" aria-hidden="true">🔄</span>
+                  <span class="info-label">Continuous Integration</span>
+                  <span class="info-desc">Merge &amp; test automatically</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-icon" aria-hidden="true">🚀</span>
+                  <span class="info-label">Continuous Deployment</span>
+                  <span class="info-desc">Ship to production instantly</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-icon" aria-hidden="true">🛡️</span>
+                  <span class="info-label">Quality Gates</span>
+                  <span class="info-desc">Automated checks &amp; tests</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Section 2 : My Pipeline ───────────────────────────────── -->
+        <section id="my-pipeline" class="card" aria-labelledby="pipeline-heading">
+          <div class="card-inner">
+            <div class="section-icon" aria-hidden="true">🔧</div>
+            <div class="section-body">
+              <h2 id="pipeline-heading" class="section-title">My Pipeline</h2>
+              <p class="section-text">
+                Every time code is pushed to the <code>main</code> branch on
+                GitHub, an automated workflow is triggered via
+                <strong>GitHub Actions</strong>. The workflow performs build
+                verification, runs validation checks, and upon success,
+                deploys the latest version directly to <strong>GitHub Pages</strong>
+                — making the live site update within seconds, with zero manual
+                intervention.
+              </p>
+
+              <ol class="pipeline-steps" aria-label="Pipeline stages">
+                <li class="pipeline-step" id="step-commit">
+                  <span class="step-dot" aria-hidden="true"></span>
+                  <div class="step-content">
+                    <span class="step-icon" aria-hidden="true">📝</span>
+                    <div>
+                      <strong class="step-name">Commit &amp; Push</strong>
+                      <span class="step-desc">Code is pushed to the GitHub repository</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="pipeline-step" id="step-actions">
+                  <span class="step-dot" aria-hidden="true"></span>
+                  <div class="step-content">
+                    <span class="step-icon" aria-hidden="true">⚙️</span>
+                    <div>
+                      <strong class="step-name">GitHub Actions Triggered</strong>
+                      <span class="step-desc">Workflow YAML runs automatically</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="pipeline-step" id="step-build">
+                  <span class="step-dot" aria-hidden="true"></span>
+                  <div class="step-content">
+                    <span class="step-icon" aria-hidden="true">🏗️</span>
+                    <div>
+                      <strong class="step-name">Build &amp; Checks</strong>
+                      <span class="step-desc">Files are validated and the project is built</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="pipeline-step" id="step-deploy">
+                  <span class="step-dot" aria-hidden="true"></span>
+                  <div class="step-content">
+                    <span class="step-icon" aria-hidden="true">📦</span>
+                    <div>
+                      <strong class="step-name">Deploy to GitHub Pages</strong>
+                      <span class="step-desc">Artifacts are pushed to the gh-pages branch</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="pipeline-step" id="step-live">
+                  <span class="step-dot step-dot--last" aria-hidden="true"></span>
+                  <div class="step-content">
+                    <span class="step-icon" aria-hidden="true">🌐</span>
+                    <div>
+                      <strong class="step-name">Live Site Updated</strong>
+                      <span class="step-desc">Users see the latest version instantly</span>
+                    </div>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Interactive Simulation ─────────────────────────────────── -->
+        <section id="simulation" class="card card--dark" aria-labelledby="sim-heading">
+          <div class="card-inner">
+            <div class="section-icon" aria-hidden="true">▶</div>
+            <div class="section-body">
+              <h2 id="sim-heading" class="section-title section-title--light">
+                Pipeline Simulation
+              </h2>
+              <p class="section-text section-text--muted">
+                Click the button below to watch a simulated CI/CD pipeline run
+                in real time.
+              </p>
+
+              <button
+                id="run-pipeline-btn"
+                class="btn btn--primary"
+                type="button"
+                aria-controls="pipeline-output"
+                aria-expanded="false"
+              >
+                <span class="btn-icon" aria-hidden="true">▶</span>
+                Run Pipeline Simulation
+              </button>
+
+              <div
+                id="pipeline-output"
+                class="terminal"
+                role="log"
+                aria-live="polite"
+                aria-atomic="false"
+                aria-label="Pipeline simulation output"
+              >
+                <div class="terminal-bar">
+                  <span class="t-dot t-dot--red" aria-hidden="true"></span>
+                  <span class="t-dot t-dot--yellow" aria-hidden="true"></span>
+                  <span class="t-dot t-dot--green" aria-hidden="true"></span>
+                  <span class="terminal-title">GitHub Actions — Runner</span>
+                </div>
+                <div id="terminal-body" class="terminal-body">
+                  <p class="terminal-idle">Pipeline output will appear here…</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /.container -->
+    </main>
+
+    <!-- ════════════════════════════ FOOTER ════════════════════════════ -->
+    <footer id="footer">
+      <div class="container footer-inner">
+        <p class="footer-copy">© 2026 Cloud Computing Assignment</p>
+        <p class="footer-sub">Built with GitHub Actions &amp; GitHub Pages</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
