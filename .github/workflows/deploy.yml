@@ -7,14 +7,7 @@ on:
   workflow_dispatch:  # Allow manual trigger from GitHub UI
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
   # ─────────────────────────────────────────
@@ -53,29 +46,27 @@ jobs:
           wc -l index.html style.css script.js
           du -sh index.html style.css script.js
 
-      - name: Upload artifact for deployment
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .   # Deploy from root directory
-
   # ─────────────────────────────────────────
-  # JOB 2: Deploy to GitHub Pages
+  # JOB 2: Deploy to gh-pages branch
   # ─────────────────────────────────────────
   deploy:
     name: Deploy to GitHub Pages
     needs: build
     runs-on: ubuntu-latest
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          exclude_assets: '.github,README.md'
 
       - name: Print live URL
         run: |
           echo "Deployment complete!"
-          echo "Live site: ${{ steps.deployment.outputs.page_url }}"
+          echo "Live site: https://OsamaAyesh.github.io/cloud-beginner-cicd-pages-osamaayesh/"
